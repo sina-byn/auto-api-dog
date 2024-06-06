@@ -27,19 +27,20 @@ const params = (tagType, tags) => {
   return queries;
 };
 
-const bodyRequired = body => {
-  body = typeof body === 'string' ? JSON.parse(body) : body;
-  const required = [];
+const schemaRequired = required => {
+  if (!required) return;
+  required = typeof required === 'string' ? JSON.parse(required) : required;
+  const requiredFields = [];
 
-  for (const [bodyField, fieldConfig] of Object.entries(body)) {
-    if (fieldConfig.required) required.push(bodyField);
+  for (const [requiredField, fieldConfig] of Object.entries(required)) {
+    if (fieldConfig.required) requiredFields.push(requiredField);
 
     if (typeof fieldConfig.value === 'object' && !Array.isArray(fieldConfig.value)) {
-      required.push(bodyRequired(fieldConfig.value));
+      requiredFields.push(schemaRequired(fieldConfig.value));
     }
   }
 
-  return required;
+  return requiredFields;
 };
 
 const insertRequired = (schema, required) => {
@@ -88,16 +89,18 @@ const extractEndpoint = comment => {
     },
   };
 
-  const body = (tags.find(t => t.tag === 'body') ?? { description: '' }).description.trim();
+  const required = (tags.find(t => t.tag === 'required') ?? { description: '' }).description.trim();
   const payload = (tags.find(t => t.tag === 'payload') ?? { description: '' }).description.trim();
 
-  if (body && payload) {
-    const required = bodyRequired(body);
+  if (required && !payload) throw new Error('"payload" is required if "required" is specified');
+
+  if (payload) {
+    const requiredFields = schemaRequired(required);
     const jsonSchema = toJsonSchema(JSON.parse(payload));
 
     apiEndpoint.api.requestBody = {
       type: 'application/json',
-      jsonSchema: insertRequired(jsonSchema, required),
+      jsonSchema: required ? insertRequired(jsonSchema, requiredFields) : jsonSchema,
       example: JSON.parse(payload),
     };
   }

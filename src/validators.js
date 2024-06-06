@@ -34,7 +34,7 @@ const apiEndpointSchema = Joi.object({
     maintainer: Joi.string().min(1),
     requestBody: Joi.alternatives().conditional('method', {
       is: Joi.string().valid(...METHODS.slice(1, 4)),
-      then: bodySchema.label("@body"),
+      then: bodySchema,
       otherwise: Joi.forbidden(),
     }),
   }),

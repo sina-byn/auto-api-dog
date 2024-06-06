@@ -8,7 +8,7 @@ const paramSchema = Joi.object({
   name: Joi.string().min(1).required(),
   description: Joi.string().min(1),
   required: Joi.boolean().required(),
-  example: Joi.string(),
+  example: Joi.alternatives(Joi.string(), Joi.number()),
   enable: Joi.boolean(),
 });
 

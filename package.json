@@ -18,7 +18,6 @@
     "comment-parser": "^1.4.1",
     "fast-glob": "^3.3.2",
     "joi": "^17.13.1",
-    "to-json-schema": "^0.2.5",
-    "zod": "^3.23.8"
+    "to-json-schema": "^0.2.5"
   }
 }

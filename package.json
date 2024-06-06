@@ -1,17 +1,21 @@
 {
   "name": "auto-api-dog",
   "version": "1.0.0",
-  "description": "",
   "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "files": [
+    "src"
+  ],
   "bin": {
     "auto-api-dog": "src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sina Bayandorian <sina.sina.bayan@protonmail.com> (https://portfolio-sina-byn.vercel.app/)",
+  "description": "a Node.JS CLI tool to easily generate api dog documentation file from your comments",
+  "repository": "github:sina-byn/auto-api-dog",
+  "homepage": "https://github.com/sina-byn/auto-api-dog#readme",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
@@ -19,5 +23,25 @@
     "fast-glob": "^3.3.2",
     "joi": "^17.13.1",
     "to-json-schema": "^0.2.5"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/sina-byn/cmtu/issues",
+    "email": "sina.sina.bayan@protonmail.com"
+  },
+  "keywords": [
+    "cli",
+    "API",
+    "REST",
+    "API-REST",
+    "REST-API",
+    "RESTful-API",
+    "api-dog",
+    "api-doc",
+    "api-docs",
+    "api-documenter",
+    "api-doc-generator",
+    "api-documentation",
+    "api-documentation-tool",
+    "api-document-generator"
+  ]
 }

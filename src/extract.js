@@ -11,7 +11,8 @@ const params = (tagType, tags) => {
 
   const queries = tags.reduce((queries, t) => {
     if (t.tag !== tagType) return queries;
-    if (t.optional) t.required = !!t.default;
+    t.required = !t.optional;
+
     const query = {};
 
     for (const [key, mappedTo] of fieldsMap) {

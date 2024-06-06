@@ -19,6 +19,15 @@ const params = (tagType, tags) => {
       if ((mappedTo ?? key) in t) query[key] = t[mappedTo ?? key];
     }
 
+    if (query.example) {
+      if (query.name.startsWith('!')) {
+        query.name = query.name.slice(1);
+        query.required = true;
+      }
+
+      if (query.type === 'number') query.example = +query.example;
+    }
+
     if (Object.keys(query).length > 0) queries.push({ ...query, ...defaults });
 
     return queries;

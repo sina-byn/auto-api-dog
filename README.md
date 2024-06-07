@@ -97,7 +97,7 @@ Below is the table of all the fields that are defined for the cli. Make sure to 
 
 ### Notes 
 
-- <div id="name-syntax"></div>due to the [JSDoc](https://jsdoc.app/) convention the name should follow `@name - {endpoint_name}` the `-` is required or the first word of the name will be ignored
+- <div id="name-syntax"></div>due to the <a href="https://jsdoc.app/">JSDoc</a> convention the name should follow `@name - {endpoint_name}` the `-` is required or the first word of the name will be ignored
 
 - <div id="req-body"></div>`payload` and `required`
 
